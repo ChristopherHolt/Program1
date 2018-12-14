@@ -1,0 +1,39 @@
+import java.io.File;
+import java.util.Scanner;
+import java.io.FileNotFoundException;
+public class program2{
+  public static void main(String [] args){
+    try{
+      Scanner scan = new Scanner (new File ("medium.html"));
+      String line = "";
+      LinkedQueue<Character> queue = new LinkedQueue<Character>();
+      Boolean tag = false;
+       
+      while (scan.hasNext())	//while there are more lines to read
+      {
+        line = scan.nextLine();	//read one in
+        for(int i = 0; i < line.length(); i++){
+          char c = line.charAt(i);
+          if(c == '<'){
+          tag = true;
+          }else if (c == '>')
+          {
+            tag = false;
+          }
+           if(!tag && c < 'z' && c > 'A'){
+             queue.enqueue(c);
+            }else{
+               if(!queue.isEmpty())
+                 System.out.println(queue);
+                while(!queue.isEmpty()){
+                  queue.dequeue();
+                   }
+                }
+             }
+          }
+        }
+        catch(FileNotFoundException e){
+        System.out.println("the file does not exist");
+        }
+    }
+}
